@@ -20,14 +20,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const spotsLeft = details.max_participants - details.participants.length;
 
-        // Monta a lista de participantes
+        // Layout melhorado para participantes: chips em linha
         let participantsHTML = "";
         if (details.participants.length > 0) {
           participantsHTML = `
             <p><strong>Inscritos:</strong></p>
-            <ul>
-              ${details.participants.map(email => `<li>${email}</li>`).join("")}
-            </ul>
+            <div class="participants-chips">
+              ${details.participants.map(email => `<span class="participant-chip">${email}</span>`).join("")}
+            </div>
           `;
         } else {
           participantsHTML = `<p><em>Nenhum participante inscrito ainda.</em></p>`;
