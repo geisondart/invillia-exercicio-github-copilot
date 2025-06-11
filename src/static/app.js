@@ -20,11 +20,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const spotsLeft = details.max_participants - details.participants.length;
 
+        // Layout melhorado para participantes: chips em linha
+        let participantsHTML = "";
+        if (details.participants.length > 0) {
+          participantsHTML = `
+            <p><strong>Inscritos:</strong></p>
+            <div class="participants-chips">
+              ${details.participants.map(email => `<span class="participant-chip">${email}</span>`).join("")}
+            </div>
+          `;
+        } else {
+          participantsHTML = `<p><em>Nenhum participante inscrito ainda.</em></p>`;
+        }
+
         activityCard.innerHTML = `
           <h4>${name}</h4>
           <p>${details.description}</p>
           <p><strong>Schedule:</strong> ${details.schedule}</p>
           <p><strong>Availability:</strong> ${spotsLeft} spots left</p>
+          ${participantsHTML}
         `;
 
         activitiesList.appendChild(activityCard);
